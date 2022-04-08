@@ -1,0 +1,57 @@
+# Compiled file
+*.class
+*.exe
+*.so
+
+# Binary Files #
+*.psd
+*.ai
+
+# temp files
+.mtj.tmp/
+hs_err_pid*
+*.tmp
+*.log
+*.ctxt
+*.bak
+
+# support files
+*.swp
+*.md5
+*.sha1
+*.sha256
+*.sha512
+*.iml
+*.ipr
+*.iws
+Desktop.ini
+
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.gz
+*.rar
+*.7z
+Thumbs.db
+ehthumbs.db
+._*
+
+#runtime folder, 
+classes
+plugins
+target
+build
+out
+lib
+log
+.git
+.svn
+.settings
+.DS_Store
+.idea
+.externalToolBuilders
+$RECYCLE.BIN
