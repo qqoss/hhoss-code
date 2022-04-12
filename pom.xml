@@ -19,9 +19,8 @@
     </scm>
 	<dependencies>
 		<dependency>
-		  <groupId>commons-codec</groupId>
-		  <artifactId>commons-codec</artifactId>
-		  <version>1.9</version>
+		  <groupId>${project.groupId}</groupId>
+		  <artifactId>hhoss-util</artifactId>
 		</dependency>
 	</dependencies>		
 </project>
