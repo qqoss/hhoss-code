@@ -30,8 +30,8 @@ import java.util.TreeMap;
 
 import javax.crypto.Cipher;
 
+import com.hhoss.code.HexCoder;
 import com.hhoss.code.coder.Base64;
-import com.hhoss.code.coder.HexCoder;
 
 /**
  * @author kejun

@@ -4,7 +4,7 @@
 	<parent>
 	  <artifactId>maven-base</artifactId>
 	  <groupId>com.hhoss</groupId>
-	  <version>0.9.7</version>
+	  <version>0.9.8</version>
 	</parent>
 	<name>hhoss code</name>
 	<artifactId>hhoss-code</artifactId>
@@ -21,6 +21,18 @@
 		<dependency>
 		  <groupId>${project.groupId}</groupId>
 		  <artifactId>hhoss-util</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>1.70</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+		  <groupId>org.bouncycastle</groupId>
+		  <artifactId>bcpg-jdk15on</artifactId>
+		  <version>1.70</version>
+          <optional>true</optional>
 		</dependency>
 	</dependencies>		
 </project>

@@ -1,6 +1,6 @@
 package com.hhoss.code.coder;
 
-import com.hhoss.util.coder.HexCoder;
+import com.hhoss.util.HexCoder;
 
 public class Base64 {
 	public static byte[] encode(byte[] bytes){

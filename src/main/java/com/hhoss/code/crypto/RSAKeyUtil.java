@@ -29,8 +29,8 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Enumeration;
 
 import com.hhoss.boot.App;
+import com.hhoss.code.HexCoder;
 import com.hhoss.code.coder.Base64;
-import com.hhoss.code.coder.HexCoder;
 import com.hhoss.jour.Logger;
 
 /**

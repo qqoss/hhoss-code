@@ -1,4 +1,4 @@
-package com.hhoss.code.coder;
+package com.hhoss.code;
 
 public class HexCoder {
 
