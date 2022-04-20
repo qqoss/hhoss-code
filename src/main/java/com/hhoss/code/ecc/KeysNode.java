@@ -18,30 +18,23 @@ import org.bouncycastle.math.ec.ECConstants;
 import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.math.ec.FixedPointCombMultiplier;
 
+import com.hhoss.boot.App;
 import com.hhoss.hash.Hmac;
 
 public final class KeysNode implements ECConstants,ECConstant {
 	private static final int STRENTH = CURVE.getN().bitLength()>>>2; // set 1/4=0.25; best is 1/3=0.33 for hex; 2/5=0.4 for oct;
-	private static final ProviderConfiguration BCCONF = BouncyCastleProvider.CONFIGURATION;
-	static boolean useOct = false;
+	private static ProviderConfiguration BCCONF;
+	private static boolean useOct = false;
 	private KeysNode parent;
 	private KeyPair keys;
 	private String name;
 	private byte[] pub;
 	
-	static{ if( Security.getProvider(BouncyCastleProvider.PROVIDER_NAME)==null ) {
-				Security.addProvider(new BouncyCastleProvider());
-	}}
+	static{checkConfiguration();}
 
 	public KeysNode(String name) {
 		this.name=name;
 		this.initialize();
-	}
-
-	public KeysNode(String name, String priKey) {
-		if(name==null||priKey==null){return;};
-		BigInteger d = Numeric.toBigInt(priKey);
-		this.keys = createKeys(d);
 	}
 
 	public KeysNode(String name, KeysNode group) {
@@ -53,6 +46,27 @@ public final class KeysNode implements ECConstants,ECConstant {
 	public KeysNode(String name, KeyPair keys) {
 		this.name=name;
 		this.keys=keys;
+	}
+
+	/**
+	 * @param name the key name
+	 * @param priKey the hex coding string of the  bigInteger
+	 */
+	public KeysNode(String name, String priKey) {
+		if(name==null||priKey==null){return;};
+		BigInteger d = Numeric.toBigInt(priKey);
+		this.name = name;
+		this.keys = createKeys(d);
+	}
+
+	/**
+	 * @param name the name of key
+	 * @param priKey the bigInteger key
+	 */
+	public KeysNode(String name, BigInteger priKey) {
+		if(name==null||priKey==null){return;};
+		this.name = name;
+		this.keys = createKeys(priKey);
 	}
 
 	public KeysNode getParent() {
@@ -80,8 +94,7 @@ public final class KeysNode implements ECConstants,ECConstant {
 	private void initialize() {
 		if(name==null||getPrivate()!=null){return;};
 		byte[] seed = (parent==null)?name.getBytes():parent.getPrivate().toByteArray();
-		BigInteger priKey = useOct?generateOctKey(name,seed):generateKey(name,seed);
-		this.keys = createKeys(priKey);
+		this.keys = createKeys(generateKey(name,seed));
 	}
 	
 	KeyPair getKeys() {
@@ -248,6 +261,13 @@ public final class KeysNode implements ECConstants,ECConstant {
 		return sb.toString();
 	}	
 
+	private static void checkConfiguration() {
+		useOct = App.res("res.app.module.crypto").getBool("spi.crypto.keys.private.octal",useOct);
+		BCCONF = BouncyCastleProvider.CONFIGURATION;
+		if( Security.getProvider(BouncyCastleProvider.PROVIDER_NAME)==null ) {
+			Security.addProvider(new BouncyCastleProvider());
+		}
+	}
 	// btc address算法不一样：https://www.zhihu.com/question/22399196/answer/201836128
 
 }

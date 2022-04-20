@@ -4,19 +4,19 @@ import java.math.BigInteger;
 
 import org.bouncycastle.math.ec.ECConstants;
 
-import com.hhoss.hash.Hash;
+import com.hhoss.boot.App;
 import com.hhoss.hash.Hmac;
 
 public class TestKeysNode {
+	private static boolean useOct = App.res("res.app.module.crypto").getBool("run.crypto.keys.private.octal",false);
 
 	public static void main(String[] args) {
 		//test1("_ROOT.SANDBOX",true);
-		test1("ZHENG_KEJUN",true);
+		test1("ZHENG_KEJUN");
 		test2();
 	}
 	
-	static void test1(String rootName,boolean useOct) {
-		KeysNode.useOct=useOct;
+	static void test1(String rootName) {
 		KeysNode root = new KeysNode(rootName);
 		for(int g=1;g<32;g++){
 			System.out.println(g+":"+System.currentTimeMillis()/1000);
@@ -75,7 +75,7 @@ public class TestKeysNode {
 		int i=0;
 		for(;;) {
 			data = Hmac.hmacSha256(salt, data);
-			if(KeysNode.useOct) {
+			if(useOct) {
 				d =  Numeric.toBigInt(KeysNode.oct(data));
 			}else {
 				d =  Numeric.toBigInt(data);

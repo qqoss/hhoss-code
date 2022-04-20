@@ -1,38 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-	  <artifactId>maven-base</artifactId>
-	  <groupId>com.hhoss</groupId>
-	  <version>0.9.8</version>
-	</parent>
-	<name>hhoss code</name>
-	<artifactId>hhoss-code</artifactId>
-	<url>${scm.base.url}</url>
- 	<properties>
-		<scm.base.url>https://github.com/qqoss/${project.artifactId}</scm.base.url>
-	</properties>
-    <scm>
-        <url>${scm.base.url}</url>
-        <connection>scm:git:${scm.base.url}</connection>
-        <developerConnection>scm:git:${scm.base.url}</developerConnection>
-    </scm>
-	<dependencies>
-		<dependency>
-		  <groupId>${project.groupId}</groupId>
-		  <artifactId>hhoss-util</artifactId>
-		</dependency>
-		<dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15to18</artifactId>
-            <version>1.70</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-		  <groupId>org.bouncycastle</groupId>
-		  <artifactId>bcpg-jdk15on</artifactId>
-		  <version>1.70</version>
-          <optional>true</optional>
-		</dependency>
-	</dependencies>		
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>maven-base</artifactId>
+    <groupId>com.hhoss</groupId>
+    <version>1.0.1</version>
+  </parent>
+  <name>hhoss code</name>
+  <artifactId>hhoss-code</artifactId>
+  <url>${scm.base.url}</url>
+  <properties>
+    <scm.base.url>https://github.com/qqoss/${project.artifactId}</scm.base.url>
+  </properties>
+  <scm>
+    <url>${scm.base.url}</url>
+    <connection>scm:git:${scm.base.url}</connection>
+    <developerConnection>scm:git:${scm.base.url}</developerConnection>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>hhoss-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15to18</artifactId>
+      <version>1.70</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpg-jdk15on</artifactId>
+      <version>1.70</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 </project>

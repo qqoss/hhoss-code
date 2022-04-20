@@ -1,6 +1,6 @@
 package com.hhoss.code.crypto;
 
-import com.hhoss.Constant;
+import com.hhoss.lang.Constant;
 import com.hhoss.util.HMap;
 
 public interface CipherConstants extends Constant{

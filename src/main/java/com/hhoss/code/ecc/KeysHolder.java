@@ -1,12 +1,23 @@
 package com.hhoss.code.ecc;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.hhoss.boot.App;
 
 
 public class KeysHolder {
 	public static final String ROOT = "_ROOT";
-	private static final Map<String, KeysNode> CACHE = new HashMap<>();
+	private static final Map<String, KeysNode> CACHE = new HashMap<>();	
+	static{ initial(); }
+	
+	private static void initial() {
+		String secret = App.getProperty("res.app.module.crypto", "spi.crypto.keys.holder.seed");
+		if(secret==null||secret.length()<8) { return; }
+		byte[] seed = secret.getBytes();
+		setRoot(KeysNode.generateKey(ROOT,seed));
+	}
 	
 	/**
 	 * @param child name of the keys,  not null
@@ -44,11 +55,15 @@ public class KeysHolder {
 		return setAndReturn(ROOT,new KeysNode(ROOT));
 	}
 	
-	public static void setRoot(java.security.KeyPair kp) {
+	protected static void setRoot(java.security.KeyPair pair) {
 		CACHE.clear();
-		CACHE.put(ROOT,new KeysNode(ROOT,kp));
+		CACHE.put(ROOT,new KeysNode(ROOT,pair));
 	}
 	
+	protected static void setRoot(BigInteger priKey) {
+		CACHE.clear();
+		CACHE.put(ROOT,new KeysNode(ROOT,priKey));
+	}	
 	
 	private static KeysNode setAndReturn(String name, KeysNode keyGen) {
 		CACHE.put(name,keyGen);
